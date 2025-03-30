@@ -1,0 +1,3 @@
+[submodule "auth-ms-prueba-tecnica"]
+	path = auth-ms-prueba-tecnica
+	url = https://github.com/prueba-tecnica-trycode/auth-ms-prueba-tecnica.git
