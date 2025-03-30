@@ -5,3 +5,22 @@ services:
     image: nats:latest
     ports:
       - "4222:4222"
+
+  client-gateway:
+    build: ./client-gateway-prueba-tecnica
+    ports:
+      - "${PORT_GATEWAY}:3000"
+    volumes:
+      - ./client-gateway-prueba-tecnica/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=${PORT_GATEWAY}
+      - NATS_URL=nats://nats-server:4222
+
+  auth-server:
+    build: ./auth-ms-prueba-tecnica
+    volumes:
+      - ./auth-ms-prueba-tecnica/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=${PORT_AUTH_MS}
