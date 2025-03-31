@@ -25,3 +25,21 @@ services:
     environment:
       - PORT=${PORT_AUTH_MS}
       - NATS_URL=nats://nats-server:4222
+      - DB_PASSWORD=${DB_PASSWORD_AUTH}
+      - DB_NAME=${DB_NAME_AUTH}
+      - DB_HOST=${DB_HOST_AUTH}
+      - DB_PORT=${DB_PORT_AUTH}
+      - DB_USERNAME=${DB_USERNAME_AUTH}
+      - SECRET_JWT=${SECRET_JWT}
+
+  db-auth:
+    image: postgres:16.2
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD_AUTH}
+      POSTGRES_DB: ${DB_NAME_AUTH}
+    container_name: db-auth
+    volumes:
+      - ./auth-ms-prueba-tecnica/postgres:/var/lib/postgresql/data
