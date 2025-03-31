@@ -4,3 +4,6 @@
 [submodule "client-gateway-prueba-tecnica"]
 	path = client-gateway-prueba-tecnica
 	url = https://github.com/prueba-tecnica-trycode/client-gateway-prueba-tecnica.git
+[submodule "products-ms-prueba-tecnica"]
+	path = products-ms-prueba-tecnica
+	url = https://github.com/prueba-tecnica-trycode/products-ms-prueba-tecnica.git
