@@ -24,3 +24,4 @@ services:
     command: npm run start:dev
     environment:
       - PORT=${PORT_AUTH_MS}
+      - NATS_URL=nats://nats-server:4222
