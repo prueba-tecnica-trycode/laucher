@@ -43,3 +43,12 @@ services:
     container_name: db-auth
     volumes:
       - ./auth-ms-prueba-tecnica/postgres:/var/lib/postgresql/data
+
+  product-server:
+    build: ./products-ms-prueba-tecnica
+    volumes:
+      - ./products-ms-prueba-tecnica/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=${PORT_PRODUCT_MS}
+      - NATS_URL=nats://nats-server:4222
