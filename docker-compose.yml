@@ -18,6 +18,8 @@ services:
       - NATS_URL=nats://nats-server:4222
 
   auth-server:
+    depends_on:
+      - db-auth
     build: ./auth-ms-prueba-tecnica
     volumes:
       - ./auth-ms-prueba-tecnica/src:/usr/src/app/src
@@ -38,6 +40,7 @@ services:
     ports:
       - "5433:5432"
     environment:
+      POSTGRES_USER: ${DB_USERNAME_AUTH}
       POSTGRES_PASSWORD: ${DB_PASSWORD_AUTH}
       POSTGRES_DB: ${DB_NAME_AUTH}
     container_name: db-auth
@@ -45,6 +48,8 @@ services:
       - ./auth-ms-prueba-tecnica/postgres:/var/lib/postgresql/data
 
   product-server:
+    depends_on:
+      - db-product
     build: ./products-ms-prueba-tecnica
     volumes:
       - ./products-ms-prueba-tecnica/src:/usr/src/app/src
@@ -64,6 +69,7 @@ services:
     ports:
       - "5434:5432"
     environment:
+      POSTGRES_USER: ${DB_USERNAME_PRODUCT}
       POSTGRES_PASSWORD: ${DB_PASSWORD_PRODUCT}
       POSTGRES_DB: ${DB_NAME_PRODUCT}
     container_name: db-product
