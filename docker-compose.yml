@@ -52,3 +52,22 @@ services:
     environment:
       - PORT=${PORT_PRODUCT_MS}
       - NATS_URL=nats://nats-server:4222
+      - DB_PASSWORD=${DB_PASSWORD_PRODUCT}
+      - DB_NAME=${DB_NAME_PRODUCT}
+      - DB_HOST=${DB_HOST_PRODUCT}
+      - DB_PORT=${DB_PORT_PRODUCT}
+      - DB_USERNAME=${DB_USERNAME_PRODUCT}
+
+  db-product:
+    image: postgres:16.2
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD_PRODUCT}
+      POSTGRES_DB: ${DB_NAME_PRODUCT}
+    container_name: db-product
+    volumes:
+      - ./products-ms-prueba-tecnica/postgres:/var/lib/postgresql/data
+ 
+  
